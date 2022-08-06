@@ -1,0 +1,17 @@
+@startuml
+actor       Member       as men
+participant Front as scr
+participant API as api
+participant DB as db
+participant Discord as dis
+
+api->scr:ユーザid入力要求
+men->scr:ユーザid入力
+scr->api:ユーザid
+api->dis:idからユーザ名問い合わせ
+dis-->api:ユーザ名
+api->scr:ユーザ名確認要求
+men->scr:確認
+scr->api:
+api->db:ユーザid登録
+db-->api:
