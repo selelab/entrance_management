@@ -1,0 +1,25 @@
+version: '3'
+services:
+  flask:
+    container_name: flask
+    build: ./app
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./app:/var/lib/app"
+    environment:
+      TZ: Asia/Tokyo
+      FLASK_ENV: development
+      FLASK_APP: run.py
+    command: flask run --host 0.0.0.0 --port 3000
+  db:
+    build: ./db
+    container_name: mypg
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: member_db
