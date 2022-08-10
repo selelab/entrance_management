@@ -15,7 +15,7 @@ def create_app():
 
     @app.route('/add')
     def add_user():
-        member = Member(student_id="A2078192", discord_id="kotaro#6765")
+        member = Member(student_id="", discord_id="")
         db.session.add(member)
         db.session.commit()
         return 'ユーザを増やしました'
