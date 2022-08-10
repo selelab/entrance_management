@@ -4,25 +4,16 @@ participant API as api
 participant DB as db
 participant Discord as dis
 
-api->db:状態取得
-api->db:最終更新日取得
-
-alt 状態が「退室」
+alt ユーザ状態が「退室」
     api->db:状態を「入室」に
     api->dis:入室通知
-    api->dis:idからユーザ名問い合わせ
-    dis-->api:ユーザ名
     api->scr:入室ログ
-else 状態が「入室」&&最終更新日が現在
+else ユーザ状態が「入室」&&最終更新日が現在
     api->db:状態を「退室」に
     api->dis:退室通知
-    api->dis:idからユーザ名問い合わせ
-    dis-->api:ユーザ名
     api->scr:退室ログ
-else 状態が「入室」&&最終更新日が現在でない
+else ユーザ状態が「入室」&&最終更新日が現在でない
     api->dis:入室通知
-    api->dis:idからユーザ名問い合わせ
-    dis-->api:ユーザ名
     api->scr:入室ログ
 end
 

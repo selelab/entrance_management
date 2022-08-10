@@ -13,5 +13,5 @@ dis-->api:ユーザ名
 api->scr:ユーザ名確認要求
 men->scr:確認
 scr->api:
-api->db:ユーザid登録
-db-->api:
+api->db:ユーザ登録
+db-->api:ユーザ情報

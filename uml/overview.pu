@@ -7,12 +7,11 @@ participant Discord as dis
 
 men->scr:学生証スキャン
 scr->api:学籍番号
-api->db:ユーザid問い合わせ
-db-->api:
+api->db:ユーザ問い合わせ
+db-->api:ユーザ情報orユーザ非存在エラー
 
-alt User don't exist in DB
+opt ユーザ非存在エラーの場合
     ref over men, dis : 登録処理
-else 
-    ref over scr, dis : 通知処理
 end
+    ref over scr, dis : 通知処理
 @enduml
